@@ -1,0 +1,33 @@
+{
+  "name": "TrueAdBlocker",
+  "description": "TrueAdBlocker",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "icons": {
+    "16": "TrueAdBlocker16x16.png",
+    "48": "TrueAdBlocker48x48.png",
+    "128": "TrueAdBlocker128x128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "TrueAdBlocker",
+    "default_icon": "TrueAdBlocker16x16.png"
+  },
+  "permissions": [
+    "declarativeNetRequest",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+   "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["contentScript.js"]
+    }]
+}
