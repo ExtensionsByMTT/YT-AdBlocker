@@ -1,6 +1,6 @@
 {
-  "name": "TrueAdBlocker",
-  "description": "TrueAdBlocker",
+  "name": "YouTubeAdBlocker",
+  "description": "watch ads free videos on youtube",
   "version": "1.0.0",
   "manifest_version": 3,
   "icons": {
@@ -13,15 +13,8 @@
     "default_title": "TrueAdBlocker",
     "default_icon": "TrueAdBlocker16x16.png"
   },
-  "permissions": [
-    "declarativeNetRequest",
-    "storage",
-    "tabs"
-  ],
-  "host_permissions": [
-    "<all_urls>"
-  ],
-   "options_page": "options.html",
+  "permissions": ["storage", "tabs"],
+  "options_page": "options.html",
   "background": {
     "service_worker": "background.js"
   },
@@ -29,5 +22,6 @@
     {
       "matches": ["https://www.youtube.com/*"],
       "js": ["contentScript.js"]
-    }]
+    }
+  ]
 }

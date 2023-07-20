@@ -20,10 +20,8 @@ setFirst(data.isInstalled);
     setTimeout(() => {
       if (first === true) {
         adAdBlocker();
-      
       } else if (first === false) {
         removeAdBlocker();
-      
       }
     }, 10);
   }, [first]);
