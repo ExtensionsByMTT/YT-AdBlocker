@@ -3,11 +3,7 @@ import ReactDOM from "react-dom";
 import "./options.css";
 
 const App: React.FC<{}> = () => {
-  return (
-    <>
-      <h1>This is option page</h1>
-    </>
-  );
+  return <></>;
 };
 
 const root = document.createElement("div");
