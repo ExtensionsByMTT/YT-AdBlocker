@@ -14,11 +14,11 @@ const Header = (props) => {
   return (
     <div className="header">
       <div>
-        <img src="./TrueAdBlocker128x128.png" alt="" height="80px" />
+        <img src="./TrueAdBlocker128x128.png" alt="" width="128px" />
       </div>
-      <div>
-        <h1>{props.title}</h1>
-      </div>
+      {/* <div>
+        <h1 style={{ fontSize: "20px" }}>{props.title}</h1>
+      </div> */}
     </div>
   );
 };
@@ -89,15 +89,16 @@ const Loader = () => {
             <h3 className="extHeading" style={{ fontSize: "25px" }}>
               Connect to Block Ads On
             </h3>
-            <h2 className="extHeading">Youtube,Twitch,And Malicious ads </h2>
+            <div className="extHeading2">
+              <img src="./youtube.png" alt="" width="30px" />
+              <span>YouTube</span>
+            </div>
           </div>
           <div className="main" onClick={tunOffAdBlc}>
-            <div id="ConnectionButton" className="disconnected">
-              <div className="staticOuterCircle"></div>
-              <div className="staticInnerCircle"></div>
-              <div className="staticBackground"></div>
-              <span className="title">Connect</span>
-            </div>
+            <input type="checkbox" id="checkbox" />
+            <label htmlFor="checkbox" className="switch">
+              <div className="powersign"></div>
+            </label>
           </div>
         </div>
       ) : (
@@ -111,28 +112,18 @@ const Loader = () => {
             <>
               {isActiveYoutube ? (
                 <div className="main-dis">
-                  <div className="main-disconnect">
-                    <div
-                      id="ConnectionButton"
-                      className="connected"
-                      onClick={turnOnAdBlc}
-                    >
-                      <div className="staticOuterCircle"></div>
-                      <div className="staticInnerCircle"></div>
-                      <div className="staticBackground"></div>
-                      <span className="title">Stop</span>
-                    </div>
-                  </div>
-
                   <div className="features">
-                    <img src="" alt="" />
-                    <div style={{ padding: "0px 10px 0px 10px" }}>
-                      {" "}
-                      <div className="youtube">
-                        <h4>YouTube</h4>
-                        <span>
-                          <img src="./youtube.png"></img>{" "}
-                        </span>
+                    <div className="top">
+                      <img
+                        src="./TrueAdBlocker128x128.png"
+                        alt=""
+                        width="128px"
+                      />
+                      <h2 className="text">Connected to Youtube Ad Blocker</h2>
+                    </div>
+                    <div className="bottom">
+                      <div className="loader" onClick={turnOnAdBlc}>
+                        <span className="title">Disconnect</span>
                       </div>
                     </div>
                   </div>
