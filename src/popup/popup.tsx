@@ -16,9 +16,10 @@ const Header = (props) => {
       <div>
         <img src="./TrueAdBlocker128x128.png" alt="" width="128px" />
       </div>
-      {/* <div>
-        <h1 style={{ fontSize: "20px" }}>{props.title}</h1>
-      </div> */}
+      <div className="extHeading2">
+              <img src="./youtube.png" alt="" width="30px" />
+              <span>YouTube</span>
+            </div>
     </div>
   );
 };
@@ -87,12 +88,9 @@ const Loader = () => {
           <Header title="TrueAdBlocker" />
           <div style={{ marginTop: "45px" }}>
             <h3 className="extHeading" style={{ fontSize: "25px" }}>
-              Connect to Block Ads On
+              Connect to Block Ads On 
             </h3>
-            <div className="extHeading2">
-              <img src="./youtube.png" alt="" width="30px" />
-              <span>YouTube</span>
-            </div>
+           <h1 className="extHeading">Youtube</h1>
           </div>
           <div className="main" onClick={tunOffAdBlc}>
             <input type="checkbox" id="checkbox" />
