@@ -86,7 +86,7 @@ setFirst(data.isInstalled);
       );
 
       const skipBtn = document.getElementsByClassName(
-        "ytp-ad-skip-button ytp-button"
+        "ytp-ad-skip-button-modern"  
       );
 
       const videoDocument = document.getElementsByClassName(

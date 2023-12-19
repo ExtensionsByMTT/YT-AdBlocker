@@ -1,7 +1,7 @@
 {
   "name": "Youtube adblocker",
   "description": "watch ads free videos on youtube",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "manifest_version": 3,
   "icons": {
     "16": "YoutubeAdBlocker16x16.png",
