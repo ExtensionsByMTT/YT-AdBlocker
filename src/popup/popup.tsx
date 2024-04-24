@@ -10,87 +10,40 @@ const App: React.FC<{}> = () => {
   );
 };
 
-const Header = (props) => {
-  return (
-    <div className="header">
-      <div>
-        <img src="./TrueAdBlocker128x128.png" alt="" width="128px" />
-      </div>
-      <div className="extHeading2">
-              <img src="./youtube.png" alt="" width="30px" />
-              <span>YouTube</span>
-            </div>
-    </div>
-  );
-};
-
 const Loader = () => {
   const [isActiveYoutube, setIsActiveYoutube] = useState(true);
-
   const [isConnecting, setisConnecting] = useState(false);
   useEffect(() => {
-    const storedData = localStorage.getItem("appData");
-    if (storedData) {
-      const parsedData = JSON.parse(storedData);
-      setIsActiveYoutube(parsedData.isActiveYoutube);
-    }
-  }, []);
-
-  useEffect(() => {
-    const dataToStore = { isActiveYoutube };
-    localStorage.setItem("appData", JSON.stringify(dataToStore));
-  }, [isActiveYoutube]);
-
-  //////////////////////////////////
-
-  const tunOffAdBlc = () => {
-    setIsActiveYoutube(!isActiveYoutube);
-
-    setisConnecting(true);
-    setTimeout(() => {
-      setisConnecting(false);
-      // Code to handle turning on ad blocking
-    }, 2000);
-    const message = { message: true };
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      const activeTab = tabs[0];
-      if (activeTab) {
-        chrome.tabs.sendMessage(activeTab.id!, message, (response) => {
-          if (response && response.farewell) {
-            console.log(response.farewell, "response");
-          }
-        });
-      }
+    chrome.storage.local.get((result) => {
+      setIsActiveYoutube(result.ExtensionState);
     });
-  };
+  }, [isActiveYoutube]);
 
   const turnOnAdBlc = () => {
     setIsActiveYoutube(!isActiveYoutube);
-    const message = { message: false };
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      const activeTab = tabs[0];
-      if (activeTab) {
-        chrome.tabs.sendMessage(activeTab.id!, message, (response) => {
-          if (response && response.farewell) {
-            console.log(response.farewell, "response");
-          }
-        });
-      }
-    });
+    setisConnecting(true);
+    setTimeout(() => {
+      setisConnecting(false);
+    }, 2000);
+    chrome.runtime.sendMessage({ action: "RELOADTHEPAGE", state: false });
+    // chrome.storage.local.set({ extensionState: false });
   };
 
-  /////////////////////////////////
+  const tunOffAdBlc = () => {
+    setIsActiveYoutube(!isActiveYoutube);
+    chrome.runtime.sendMessage({ action: "RELOADTHEPAGE", state: true });
+    // chrome.storage.local.set({ extensionState: true });
+  };
 
   return (
     <div>
       {isActiveYoutube === false ? (
         <div className="entry-connect">
-          <Header title="TrueAdBlocker" />
           <div style={{ marginTop: "45px" }}>
             <h3 className="extHeading" style={{ fontSize: "25px" }}>
-              Connect to Block Ads On 
+              Connect to Block Ads On
             </h3>
-           <h1 className="extHeading">Youtube</h1>
+            <h1 className="extHeading">Youtube</h1>
           </div>
           <div className="main" onClick={tunOffAdBlc}>
             <input type="checkbox" id="checkbox" />
@@ -118,6 +71,7 @@ const Loader = () => {
                         width="128px"
                       />
                       <h2 className="text">Connected to Youtube Ad Blocker</h2>
+                      <p className=""></p>
                     </div>
                     <div className="bottom">
                       <div className="loader" onClick={turnOnAdBlc}>
